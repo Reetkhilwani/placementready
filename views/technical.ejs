@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="placementReadyApp">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technical Skills | Placement Ready</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://portlandrentalhomes.com/wp-content/uploads/2023/12/Skills-1080x675.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .tab-btn {
+      padding: 12px 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .tab-btn:hover {
+      background-color: #3b82f6;
+      color: white;
+      transform: scale(1.05) rotate(-2deg);
+    }
+    .tab-btn.active {
+      background-color: #2563eb;
+      color: white;
+    }
+    .card {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      max-width: 800px;
+      margin: 0 auto;
+      color: #1f2937;
+    }
+    .resource-btn {
+      display: inline-block;
+      margin: 10px 5px 0 0;
+      padding: 10px 15px;
+      border: 2px solid #3b82f6;
+      border-radius: 8px;
+      background-color: #e0f2fe;
+      text-decoration: none;
+      color: #1e40af;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .resource-btn:hover {
+      background-color: #3b82f6;
+      color: white;
+      transform: scale(1.05);
+    }
+    .media {
+      margin-top: 20px;
+    }
+    .media img, .media iframe {
+      width: 100%;
+      max-width: 720px;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="SkillsController">
+  <h1>Technical Skills</h1>
+
+  <div class="tabs">
+    <button 
+      class="tab-btn" 
+      ng-repeat="topic in topics" 
+      ng-class="{active: activeTab === topic.id}" 
+      ng-click="setActiveTab(topic.id)">
+      {{topic.title}}
+    </button>
+  </div>
+
+  <div class="card" ng-repeat="topic in topics" ng-show="activeTab === topic.id">
+    <h2>{{topic.title}}</h2>
+    <p>{{topic.description}}</p>
+    <a ng-repeat="res in topic.resources" class="resource-btn" href="{{res.link}}" target="_blank">{{res.name}}</a>
+
+    <div class="media" ng-if="topic.image">
+      <img ng-src="{{topic.image}}" alt="{{topic.title}} visual">
+    </div>
+
+    <div class="media" ng-if="topic.video">
+      <iframe ng-src="{{topic.video | trusted}}" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    angular.module('placementReadyApp', []).controller('SkillsController', function($scope, $sce) {
+      $scope.activeTab = 'programming';
+
+      $scope.setActiveTab = function(tabId) {
+        $scope.activeTab = tabId;
+      };
+
+      $scope.trusted = function(url) {
+        return $sce.trustAsResourceUrl(url);
+      };
+
+      $scope.topics = [
+        {
+          id: 'programming',
+          title: 'Programming Languages',
+          description: 'Explore top languages like C, C++, Java, Python, and JavaScript with resources and roadmaps.',
+          resources: [
+            { name: 'C++ Roadmap', link: 'https://www.geeksforgeeks.org/c-plus-plus/' },
+            { name: 'Python Basics', link: 'https://docs.python.org/3/tutorial/index.html' },
+            { name: 'JavaScript Guide', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide' }
+          ],
+          image: 'https://www.plego.com/wp-content/uploads/2022/03/programming-language.png',
+          video: 'https://youtu.be/deztUdPApiM?si=Q7bPfTkkhgcv-fO5'
+        },
+        {
+          id: 'dsa',
+          title: 'Data Structures & Algorithms',
+          description: 'Master core DSA topics like arrays, trees, graphs, and dynamic programming with visualizations.',
+          resources: [
+            { name: 'LeetCode Practice', link: 'https://leetcode.com/problemset/all/' },
+            { name: 'VisuAlgo', link: 'https://visualgo.net/en' }
+          ],
+          image: 'https://studywithgenius.in/wp-content/uploads/2021/06/ds-introduction.png',
+          video: 'https://www.youtube.com/embed/8hly31xKli0'
+        },
+        {
+          id: 'webdev',
+          title: 'Web Development',
+          description: 'Learn full-stack development: HTML, CSS, JavaScript, React, Node.js, and databases.',
+          resources: [
+            { name: 'FreeCodeCamp Web Dev Path', link: 'https://www.freecodecamp.org/learn' },
+            { name: 'React Docs', link: 'https://reactjs.org/docs/getting-started.html' }
+          ],
+          image: 'https://offdrive.com/blog/wp-content/uploads/2020/06/web-development-images.jpeg',
+          video: 'https://www.youtube.com/embed/Q33KBiDriJY'
+        },
+        {
+          id: 'core',
+          title: 'Core Subjects',
+          description: 'Revise DBMS, OS, CN, and OOPs with interview-specific questions, diagrams, and quizzes.',
+          resources: [
+            { name: 'DBMS Notes', link: 'https://www.javatpoint.com/dbms-tutorial' },
+            { name: 'OS Interview Qs', link: 'https://www.geeksforgeeks.org/operating-systems/' }
+          ],
+          image: 'https://monovm.com/uploads/tinymce/antoniy/choose%20the%20right%20backend/front_end_back_end_blog-01-1024x640.png',
+          video: 'https://www.youtube.com/embed/Re_fzR3foQk'
+        },
+        {
+          id: 'git',
+          title: 'Git & GitHub',
+          description: 'Understand version control and build your portfolio using Git and GitHub.',
+          resources: [
+            { name: 'Git Handbook', link: 'https://guides.github.com/introduction/git-handbook/' }
+          ],
+          image: 'https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png',
+          video: 'https://www.youtube.com/embed/RGOj5yH7evk'
+        },
+        {
+          id: 'systemdesign',
+          title: 'System Design (Bonus)',
+          description: 'Basics of scalable systems, load balancing, and system design principles.',
+          resources: [
+            { name: 'System Design Primer', link: 'https://github.com/donnemartin/system-design-primer' }
+          ],
+          image: 'https://www.educative.io/api/page/4628009290301440/image/download/5811050918445056',
+          video: 'https://www.youtube.com/embed/t9zLsn1gFqQ'
+        }
+      ];
+    });
+  </script>
+</body>
+</html>

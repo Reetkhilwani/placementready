@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="placementReadyApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication Skills - Placement Ready</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            line-height: 1.8;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #2980b9;
+            margin-top: 25px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #ecf0f1;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+        ul li::before {
+            content: '\2713';
+            margin-right: 8px;
+            color: green;
+            font-weight: bold;
+        }
+        p {
+            margin: 15px 0;
+        }
+        header {
+            background: white;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav {
+            width: 100%;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            font-size: 16px;
+            color: black;
+            transition: color 0.3s, background-color 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        nav ul li a:hover {
+            color: white;
+            background-color: #1232d2;
+        }
+        .container {
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .content {
+            width: 70%;
+        }
+        .section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .section img {
+            width: 200px;
+            height: 200px;
+            border-radius: 5px;
+            margin-left: 20px;
+        }
+        .text-content {
+            flex: 1;
+        }
+    </style>
+</head>
+<body ng-controller="PageController">
+    <header>
+        <div class="logo">PLACEMENT READY</div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#" ng-click="setPage('spellCheck')">Spell Check</a></li>
+            <li><a href="#" ng-click="setPage('grammar')">Grammar Improvement</a></li>
+            <li><a href="#" ng-click="setPage('interview')">Interview Guidance</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="content">
+            <div ng-show="currentPage === 'spellCheck'">
+                <h1>Spell Check</h1>
+                <p>Improve your spelling accuracy with our AI-powered spell checker...</p>
+                
+                <div class="section">
+                    <div class="text-content">
+                        <h3>1. Confidence & Clarity</h3>
+                        <p><strong>Articulate:</strong> Able to express thoughts clearly and effectively.</p>
+                        <p><strong>Concise:</strong> Giving information in a brief but comprehensive manner.</p>
+                        <p><strong>Eloquent:</strong> Fluent and persuasive in speaking or writing.</p>
+                        <p><strong>Assertive:</strong> Expressing yourself confidently without being aggressive.</p>
+                        <p><strong>Coherent:</strong> Logical and consistent in speech or writing.</p>
+                    </div>
+                    <img src="/co1.png"   alt="Confidence & Clarity">
+                </div>
+                
+                <div class="section">
+                    <div class="text-content">
+                        <h3>2. Professionalism & Attitude</h3>
+                        <p><strong>Diligent:</strong> Hardworking and persistent.</p>
+                        <p><strong>Proactive:</strong> Taking action before problems arise.</p>
+                        <p><strong>Adaptable:</strong> Able to adjust to new situations easily.</p>
+                        <p><strong>Resilient:</strong> Recovering quickly from difficulties.</p>
+                        <p><strong>Resourceful:</strong> Finding creative ways to solve problems.</p>
+                    </div>
+                    <img src="/pro.png" alt="Professionalism & Attitude">
+                </div>
+                
+                <div class="section">
+                    <div>
+                        <h3>3. Collaboration & Teamwork</h3>
+                        <p><strong>Synergy:</strong> Working well together to achieve a better outcome.</p>
+                        <p><strong>Cooperation:</strong> Working together towards a common goal.</p>
+                        <p><strong>Accountable:</strong> Taking responsibility for one’s actions.</p>
+                        <p><strong>Reliable:</strong> Dependable and trustworthy.</p>
+                        <p><strong>Approachable:</strong> Easy to talk to and open to discussions.</p>
+                    </div>
+                    <img src="/coll1.png" alt="Collaboration & Teamwork">
+                </div>
+                
+                <div class="section">
+                    <div>
+                        <h3>4. Problem-Solving & Critical Thinking</h3>
+                        <p><strong>Analytical:</strong> Able to examine and understand things in depth.</p>
+                        <p><strong>Innovative:</strong> Creative and thinking outside the box.</p>
+                        <p><strong>Logical:</strong> Reasoning in a clear, rational way.</p>
+                        <p><strong>Decisive:</strong> Able to make decisions quickly and confidently.</p>
+                        <p><strong>Strategic:</strong> Planning things carefully for long-term success.</p>
+                    </div>
+                    <img src="/crit.png" alt="Problem-Solving & Critical Thinking">
+                </div>
+                
+                <div class="section">
+                    <div>
+                        <h3>5. Leadership & Influence</h3>
+                        <p><strong>Charismatic:</strong> Inspiring and drawing people in with confidence.</p>
+                        <p><strong>Motivational:</strong> Encouraging others to take action.</p>
+                        <p><strong>Empowering:</strong> Giving others confidence and authority.</p>
+                        <p><strong>Visionary:</strong> Seeing the bigger picture and planning for the future.</p>
+                        <p><strong>Decisive:</strong> Making firm choices without hesitation.</p>
+                    </div>
+                    <img src="/lead.png" alt="Leadership & Influence">
+                </div>
+                
+                <div class="section">
+                    <div>
+                        <h3>6. Negotiation & Persuasion</h3>
+                        <p><strong>Convincing:</strong> Able to make others believe or agree.</p>
+                        <p><strong>Tactful:</strong> Saying things in a way that avoids offense.</p>
+                        <p><strong>Compelling:</strong> Making a strong and persuasive argument.</p>
+                        <p><strong>Conciliatory:</strong> Aiming to resolve conflicts peacefully.</p>
+                        <p><strong>Diplomatic:</strong> Handling conversations with sensitivity.</p>
+                    </div>
+                    <img src="/nego.png" alt="Negotiation & Persuasion">
+                </div>
+    
+            </div>
+        </div>
+        <div ng-show="currentPage === 'interview'">
+            <div class="container">
+                <h1>HR Interview Guide</h1>
+                
+                <h2>1. HR Interview Basics</h2>
+                <p>HR interviews assess your personality, communication skills, and cultural fit within the company.</p>
+                <ul>
+                    <li>Express yourself clearly.</li>
+                    <li>Handle stress and pressure well.</li>
+                    <li>Align your goals with the company’s vision.</li>
+                    <li>Show problem-solving and decision-making skills.</li>
+                </ul>
+                
+                <h3>Common Mistakes to Avoid</h3>
+                <ul>
+                    <li>Avoid memorized answers.</li>
+                    <li>Maintain a balanced speaking pace.</li>
+                    <li>Do not use negative language about past jobs.</li>
+                    <li>Research the company beforehand.</li>
+                    <li>Minimize filler words like "um" and "you know".</li>
+                </ul>
+                
+                <h2>2. Answering HR Questions</h2>
+                <h3>Tell me about yourself</h3>
+                <p>Structure your response:</p>
+                <ul>
+                    <li><b>Introduction:</b> Name, education, brief background.</li>
+                    <li><b>Academics/Work Experience:</b> Highlight achievements.</li>
+                    <li><b>Skills & Interests:</b> Mention relevant skills.</li>
+                    <li><b>Why this role?</b> Connect your skills to the job.</li>
+                </ul>
+                
+                <h3>Strengths and Weaknesses</h3>
+                <ul>
+                    <li><b>Strengths:</b> Align them with job requirements.</li>
+                    <li><b>Weaknesses:</b> Show how you’re improving.</li>
+                </ul>
+                
+                <h3>Where do you see yourself in 5 years?</h3>
+                <p>Demonstrate ambition and realistic goals.</p>
+                
+                <h3>Why should we hire you?</h3>
+                <p>Highlight unique skills and enthusiasm for the role.</p>
+                
+                <h3>Why do you want to work for this company?</h3>
+                <p>Research the company’s values and projects before answering.</p>
+                
+                <h2>3. Behavioral Questions & STAR Method</h2>
+                <p>Use the STAR Method:</p>
+                <ul>
+                    <li><b>Situation:</b> Describe the context.</li>
+                    <li><b>Task:</b> Explain your role.</li>
+                    <li><b>Action:</b> Describe your approach.</li>
+                    <li><b>Result:</b> Share the outcome.</li>
+                </ul>
+                
+                <h2>4. Communication Tips</h2>
+                <h3>Body Language Do’s & Don’ts</h3>
+                <ul>
+                    <li><b>Do:</b> Maintain eye contact, sit straight, use natural gestures, smile genuinely.</li>
+                    <li><b>Don’t:</b> Cross arms, fidget, avoid eye contact.</li>
+                </ul>
+                
+                <h3>Speaking Confidently & Handling Nervousness</h3>
+                <ul>
+                    <li>Take deep breaths before answering.</li>
+                    <li>Pause instead of using filler words.</li>
+                    <li>Maintain a steady tone.</li>
+                </ul>
+                
+                <h2>5. Mock HR Interviews</h2>
+                <h3>Common HR Interview Scenarios</h3>
+                <ul>
+                    <li>Handling tough HR questions.</li>
+                    <li>Responding to tricky salary questions.</li>
+                    <li>Negotiating a job offer.</li>
+                </ul>
+                
+                <h2>6. Salary & Offer Negotiation</h2>
+                <h3>Discussing Salary Expectations</h3>
+                <p>Respond with:</p>
+                <p><i>"I’m open to discussing salary based on industry standards and company budget."</i></p>
+                
+                <h3>Negotiation Tips for Freshers</h3>
+                <ul>
+                    <li>Show enthusiasm first, then discuss salary.</li>
+                    <li>If offered lower than expected, ask about flexibility.</li>
+                    <li>Avoid demanding a high salary without justification.</li>
+                    <li>Don’t accept an offer immediately—evaluate it first.</li>
+                </ul>
+            </div>
+        </div>
+        <div ng-show="currentPage === 'grammar'">
+            <section id="grammar-improvement">
+                <h2>Grammar Improvement</h2>
+                <textarea id="text-input" placeholder="Type or paste your text here..."></textarea>
+                <button onclick="checkGrammar()">Check Grammar</button>
+                <div id="output"></div>
+                
+                <h3>Common Grammar Mistakes</h3>
+                <ul>
+                    <li>"Your" vs. "You're"</li>
+                    <li>"Its" vs. "It's"</li>
+                    <li>"There" vs. "Their" vs. "They're"</li>
+                    <li>Run-on sentences</li>
+                    <li>Subject-verb agreement</li>
+                </ul>
+            </section>
+            
+            <script>
+            function checkGrammar() {
+                let text = document.getElementById("text-input").value;
+                let output = document.getElementById("output");
+                
+                // Basic corrections (example rules)
+                let corrections = {
+                    "your": "you're",
+                    "its": "it's",
+                    "their": "they're"
+                };
+                
+                let correctedText = text;
+                for (let word in corrections) {
+                    let regex = new RegExp("\\b" + word + "\\b", "gi");
+                    correctedText = correctedText.replace(regex, corrections[word]);
+                }
+                
+                output.innerHTML = <p><strong>Corrected Text:</strong> ${correctedText}</p>;
+            }
+            </script>
+            
+        </div>
+    </div>
+    
+    <script>
+        var app = angular.module('placementReadyApp', []);
+        app.controller('PageController', function($scope) {
+            $scope.currentPage = 'spellCheck';
+            $scope.setPage = function(page) {
+                $scope.currentPage = page;
+            };
+        });
+    </script>
+</body>
+</html>

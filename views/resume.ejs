@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-section, .preview-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .resume-preview {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+        }
+
+        .preview-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .preview-section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            border-bottom: 2px solid #333;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Input Form -->
+        <div class="form-section">
+            <h2>Build Your Resume</h2>
+            <form action="/submit-resume" method="POST" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Objective</label>
+                    <textarea id="objective" name="objective" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Education</label>
+                    <textarea id="education" name="education" rows="4" placeholder="Degree, University, Year"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Work Experience</label>
+                    <textarea id="experience" name="experience" rows="4" placeholder="Job Title, Company, Duration, Responsibilities"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Skills</label>
+                    <textarea id="skills" name="skills" rows="3" placeholder="Comma-separated skills"></textarea>
+                </div>
+
+                <button type="button" onclick="updatePreview()">Update Preview</button>
+                <button type="button" onclick="downloadPDF()">Download as PDF</button>
+                <button type="submit">Save Resume</button>
+            </form>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="preview-section">
+            <h2>Preview</h2>
+            <div class="resume-preview" id="resumePreview"></div>
+        </div>
+    </div>
+
+    <script>
+        const inputs = document.querySelectorAll('input');
+        const textareas = document.querySelectorAll('textarea');
+
+        inputs.forEach(input => input.addEventListener('input', updatePreview));
+        textareas.forEach(textarea => textarea.addEventListener('input', updatePreview));
+
+        function updatePreview() {
+            const resumePreview = document.getElementById('resumePreview');
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const objective = document.getElementById('objective').value;
+            const education = document.getElementById('education').value;
+            const experience = document.getElementById('experience').value;
+            const skills = document.getElementById('skills').value;
+
+            let previewHTML = `
+                <div class="preview-header">
+                    <h1>${name}</h1>
+                    <p>${email} | ${phone}</p>
+                </div>
+                <div class="preview-section">
+                    <h3 class="section-title">Objective</h3>
+                    <p>${objective.replace(/\n/g, '<br>')}</p>
+                </div>
+                <div class="preview-section">
+                    <h3 class="section-title">Education</h3>
+                    <p>${education.replace(/\n/g, '<br>')}</p>
+                </div>
+                <div class="preview-section">
+                    <h3 class="section-title">Work Experience</h3>
+                    <p>${experience.replace(/\n/g, '<br>')}</p>
+                </div>
+                <div class="preview-section">
+                    <h3 class="section-title">Skills</h3>
+                    <p>${skills.split(',').join(' • ')}</p>
+                </div>
+            `;
+            resumePreview.innerHTML = previewHTML;
+        }
+
+        function validateForm() {
+            updatePreview(); // Optional: preview before submitting
+            alert("Changes saved successfully!");
+            return true;
+        }
+
+        const downloadPDF = async () => {
+            const resumePreview = document.getElementById('resumePreview').innerHTML;
+            const response = await fetch('/download-resume-pdf', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ html: resumePreview }),
+            });
+
+            if (response.ok) {
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'resume.pdf';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            } else {
+                alert('Failed to download PDF.');
+            }
+        };
+    </script>
+</body>
+
+</html>

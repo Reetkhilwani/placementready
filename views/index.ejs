@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Create Future | ELEVATE</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            text-align: center;
+            background: url("https://wiipa.org/wp-content/uploads/2023/03/photo_2023-03-25_23-12-23.jpg") no-repeat center center;
+            background-size: cover;
+        }
+
+        .container {
+            background-color: rgba(32, 27, 27, 0.6);
+            /* Semi-transparent background for better readability */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: fadeIn 3s ease-out;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: slideIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.1);
+            }
+
+            to {
+                opacity: 2;
+                transform: scale(0.9);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 2;
+                transform: translateY(0px);
+            }
+        }
+
+        .ok a {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>ELEVATE</h1>
+        <h2>WE CREATE FUTURE!</h2>
+        <div class="ok">
+            <a href="/login">Already have an account? Log in</a>
+            <div>
+                <a href="/signup">Sign up</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

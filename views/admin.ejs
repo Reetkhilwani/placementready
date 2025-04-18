@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:hover {
+            background-color: #e6f7ff;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            border: 1px solid #eaeaea;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #fdfdfd;
+        }
+
+        .section h2 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        .stat-card h3 {
+            margin: 0;
+            color: #3498db;
+            font-size: 24px;
+        }
+
+        .stat-card p {
+            margin: 5px 0 0;
+            color: #7f8c8d;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .stats {
+                flex-direction: column;
+            }
+            .stat-card {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-header">
+            <h1>Admin Dashboard</h1>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3><%= typeof users !== 'undefined' ? users.length : 0 %></h3>
+                <p>Registered Users</p>
+            </div>
+            <div class="stat-card">
+                <h3><%= typeof login_user !== 'undefined' ? login_user.length : 0 %></h3>
+                <p>Login Sessions</p>
+            </div>
+            <div class="stat-card">
+                <h3><%= typeof resumes !== 'undefined' ? resumes.length : 0 %></h3>
+                <p>Resumes Created</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Registered Users</h2>
+            <div class="table-responsive">
+                <% if (typeof users !== 'undefined' && users.length > 0) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Registration Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(user => { %>
+                            <tr>
+                                <td><%= user.id %></td>
+                                <td><%= user.username %></td>
+                                <td><%= user.email %></td>
+                                <td><%= user.password ? '********' : 'Not set' %></td>
+                                <td><%= user.created_at ? new Date(user.created_at).toLocaleString() : 'N/A' %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <% } else { %>
+                <p>No user data available.</p>
+                <% } %>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Login Sessions</h2>
+            <div class="table-responsive">
+                <% if (typeof login_user !== 'undefined' && login_user.length > 0) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Session ID</th>
+                            <th>User ID</th>
+                            <th>Username</th>
+                            <th>Login Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% login_user.forEach(session => { %>
+                            <tr>
+                                <td><%= session.id %></td>
+                                <td><%= session.user_id %></td>
+                                <td><%= session.username %></td>
+                                <td><%= session.login_time ? new Date(session.login_time).toLocaleString() : 'N/A' %></td>
+                                <td><%= session.status || 'Active' %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <% } else { %>
+                <p>No active login sessions.</p>
+                <% } %>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Resumes</h2>
+            <div class="table-responsive">
+                <% if (typeof resumes !== 'undefined' && resumes.length > 0) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Resume ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Objective</th>
+                            <th>Education</th>
+                            <th>Experience</th>
+                            <th>Skills</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% resumes.forEach(resume => { %>
+                            <tr>
+                                <td><%= resume.id %></td>
+                                <td><%= resume.name %></td>
+                                <td><%= resume.email %></td>
+                                <td><%= resume.phone %></td>
+                                <td><%= resume.objective ? resume.objective.substring(0, 50) + '...' : 'N/A' %></td>
+                                <td><%= resume.education ? resume.education.substring(0, 50) + '...' : 'N/A' %></td>
+                                <td><%= resume.experience ? resume.experience.substring(0, 50) + '...' : 'N/A' %></td>
+                                <td><%= resume.skills ? resume.skills.substring(0, 50) + '...' : 'N/A' %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <% } else { %>
+                <p>No resumes available.</p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

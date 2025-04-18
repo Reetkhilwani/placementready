@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aptitude Skills</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/background.jpg');
+            background-size: cover;
+            background-position: center;
+            color: black;
+        }
+        .category-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .category-card {
+            background: white;
+            color: black;
+            padding: 15px;
+            text-align: center;
+            width: 200px;
+            height: 250px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin: 10px;
+            transition: transform 0.3s ease-in-out, background-color 0.3s;
+        }
+        .category-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            background-color: #1232d2;
+            color: white;
+        }
+        .category-card img {
+            width: 100%;
+            height: 60%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border-radius: 5px 5px 0 0;
+        }
+        header {
+            background-color: white;
+            color: #1232d2;
+            padding: 15px;
+            text-align: center;
+        }
+        header img {
+            width: 100px;
+            display: block;
+            margin: auto;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            border-bottom: 3px solid black;
+            padding-bottom: 8px;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #1232d2;
+            text-align: center;
+            background: #e6e6e6;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .animated-text {
+            font-size: 18px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/logo.png" alt="Logo">
+        <h1>Aptitude Skills</h1>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <p class="animated-text">Improve your aptitude skills with topic-wise explanations, practice questions, and quizzes.</p>
+        </div>
+
+        <!-- Practice Section -->
+        <div class="section">
+            <h2>Practice Questions</h2>
+            <p>Test your skills with topic-wise questions and explanations.</p>
+            <div class="category-container">
+                <div class="category-card">
+                    <a href="/QA">
+                        <img src="/quantitative.png" alt="Quantitative">
+                        <h3>Quantitative Aptitude</h3>
+                    </a>
+                </div>
+                <div class="category-card">
+                    <a href="/LR">
+                        <img src="/logical reasoning.jpg" alt="Logical Reasoning">
+                        <h3>Logical Reasoning</h3>
+                    </a>
+                </div>
+                <div class="category-card">
+                    <a href="/verbalability">
+                        <img src="/verbal.jpg" alt="Verbal Ability">
+                        <h3>Verbal Ability</h3>
+                    </a>
+                </div>
+                <div class="category-card">
+                    <a href="/data">
+                        <img src="/data.jpg" alt="Data Interpretation">
+                        <h3>Data Interpretation</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="section">
+            <h2>Mock Tests & Quizzes</h2>
+            <p>Take quizzes to assess your preparation and improve your speed.</p>
+            <div class="category-container">
+                <div class="category-card">
+                    <a href="/quiz1">
+                        <img src="/quantitative.png" alt="Quantitative">
+                        <h3>Quantitative Aptitude</h3>
+                    </a>
+                </div>
+                <div class="category-card">
+                    <a href="/quiz2">
+                        <img src="/logical reasoning.jpg" alt="Logical Reasoning">
+                        <h3>Logical Reasoning</h3>
+                    </a>
+                </div>
+                <div class="category-card">
+                    <a href="/quiz3">
+                        <img src="/verbal.jpg" alt="Verbal Ability">
+                        <h3>Verbal Ability</h3>
+                    </a>
+                </div>
+                <div class="category-card">
+                    <a href="/quiz4">
+                        <img src="/data.jpg" alt="Data Interpretation">
+                        <h3>Data Interpretation</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shortcuts Section -->
+        <div class="section">
+            <h2>Shortcuts</h2>
+            <div class="section">
+                <h3>🧮 Quantitative Aptitude</h3>
+                <p><strong>Multiplication Trick:</strong> (X5)^2 = X × (X+1) | 25 — Ex: 35^2 = 3×4|25 = 1225</p>
+                <p><strong>Divisibility Rules:</strong> By 3: Sum of digits. By 11: Difference of positions.</p>
+                <p><strong>Percentage Conversion:</strong> 50% = 1/2, 25% = 1/4, etc.</p>
+                <p><strong>Time & Work:</strong> A (5 days), B (10) → Work = LCM(5,10)=10 → Speeds = 2 & 1 → Together = 3/day</p>
+            </div>
+            <div class="section">
+                <h3>🔄 Logical Reasoning</h3>
+                <p><strong>Blood Relation:</strong> + = Male, - = Female → Uncle, etc.</p>
+                <p><strong>Series:</strong> 1, 4, 9... (Squares), 1, 8, 27... (Cubes), 2, 3, 5... (Primes)</p>
+            </div>
+            <div class="section">
+                <h3>📖 Verbal Ability</h3>
+                <p><strong>Grammar Rule:</strong> "Either...or" follows the second subject. Ex: "Neither she nor her friends are coming."</p>
+                <p><strong>Word Roots:</strong> "Benevolent" = good; "Malevolent" = bad</p>
+            </div>
+            <div class="section">
+                <h3>📊 Data Interpretation</h3>
+                <p><strong>Approximation:</strong> 47% of 200 ≈ 100</p>
+                <p><strong>Compare Fractions:</strong> 5/8 = 62.5%, 3/5 = 60%</p>
+            </div>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="section">
+            <h2>Tips & Tricks for Aptitude Skills</h2>
+            <div class="tips">
+                <h3>Quantitative Aptitude</h3>
+                <ul>
+                    <li>✔ Focus on concepts before shortcuts.</li>
+                    <li>✔ Practice mental math and variety.</li>
+                    <li>✔ Time your problem-solving sessions.</li>
+                </ul>
+                <p><strong>📌 Resources:</strong> NCERT, RS Aggarwal, Arun Sharma</p>
+
+                <h3>Logical Reasoning</h3>
+                <ul>
+                    <li>✔ Break puzzles into steps.</li>
+                    <li>✔ Use diagrams for arrangements.</li>
+                    <li>✔ Train daily with apps.</li>
+                </ul>
+                <p><strong>📌 Resources:</strong> RS Aggarwal, George Summers</p>
+
+                <h3>Verbal Ability</h3>
+                <ul>
+                    <li>✔ Read newspapers and novels.</li>
+                    <li>✔ Improve vocabulary with apps.</li>
+                    <li>✔ Practice grammar regularly.</li>
+                </ul>
+                <p><strong>📌 Resources:</strong> Word Power Made Easy, Wren & Martin</p>
+
+                <h3>Data Interpretation</h3>
+                <ul>
+                    <li>✔ Understand all chart types.</li>
+                    <li>✔ Use approximations when suitable.</li>
+                    <li>✔ Practice CAT & GRE DI sets.</li>
+                </ul>
+                <p><strong>📌 Resources:</strong> Arun Sharma DI, GMAT Insights</p>
+            </div>
+        </div>
+
+        <!-- Resources Section -->
+        <div class="section">
+            <h2>Resources & Study Material</h2>
+            <p>Access useful PDFs and study materials below:</p>
+            <a href="/Reason_Alphabet.pdf" download>📄 1000+ Practice Questions (PDF)</a><br>
+            <a href="/LR.pdf" download>🧠 Logical Reasoning Notes (PDF)</a>
+        </div>
+    </div>
+</body>
+</html>
